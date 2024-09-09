@@ -6,4 +6,6 @@ public interface IPersistRolUseCase {
 
     Rol createRol(Rol rol);
 
+    Rol updateRol(Rol rol);
+
 }
