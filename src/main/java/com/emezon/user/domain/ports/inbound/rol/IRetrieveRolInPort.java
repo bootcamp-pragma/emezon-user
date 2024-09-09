@@ -5,7 +5,7 @@ import com.emezon.user.domain.models.Rol;
 import java.util.List;
 import java.util.Optional;
 
-public interface IRetrieveRolUseCase {
+public interface IRetrieveRolInPort {
 
     Optional<Rol> findById(String id);
 
