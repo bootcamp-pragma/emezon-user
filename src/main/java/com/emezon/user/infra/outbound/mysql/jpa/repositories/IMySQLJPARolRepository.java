@@ -5,10 +5,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface IMySQLJPARolRepository extends JpaRepository<RolEntity, String> {
 
     @Query("SELECT r FROM roles r WHERE LOWER(r.name)  = LOWER(:name)")
-    RolEntity findByName(String name);
+    Optional<RolEntity> findByName(String name);
 
 }
