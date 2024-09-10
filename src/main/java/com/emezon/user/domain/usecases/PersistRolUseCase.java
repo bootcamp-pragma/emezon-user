@@ -1,5 +1,6 @@
 package com.emezon.user.domain.usecases;
 
+import com.emezon.user.domain.exceptions.rol.RolNameAlreadyExistsException;
 import com.emezon.user.domain.models.Rol;
 import com.emezon.user.domain.ports.inbound.rol.IPersistRolInPort;
 import com.emezon.user.domain.ports.outbound.IRolRepositoryOutPort;
@@ -17,10 +18,9 @@ public class PersistRolUseCase implements IPersistRolInPort {
 
     @Override
     public Rol createRol(Rol rol) {
-        // validate rol properties
         Optional<Rol> rolByName = rolRepositoryOutPort.findByName(rol.getName());
         if (rolByName.isPresent()) {
-            // throw custom exception
+            throw new RolNameAlreadyExistsException(rol.getName());
         }
         return rolRepositoryOutPort.save(rol);
     }
