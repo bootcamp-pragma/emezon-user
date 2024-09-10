@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 public class ExceptionResponse {
     private String errorMessage;
@@ -17,4 +16,12 @@ public class ExceptionResponse {
     private Integer errorCode;
     private String details;
     private LocalDateTime timestamp;
+
+    public ExceptionResponse(String messages, String description, int value, String details) {
+        this.errorMessage = messages;
+        this.requestedURI = description;
+        this.errorCode = value;
+        this.details = details;
+        this.timestamp = LocalDateTime.now();
+    }
 }
