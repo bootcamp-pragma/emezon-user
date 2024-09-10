@@ -1,6 +1,6 @@
 package com.emezon.user.app.mappers;
 
-import com.emezon.user.app.dtos.CreateRolDto;
+import com.emezon.user.app.dtos.rol.CreateRolDto;
 import com.emezon.user.domain.models.Rol;
 
 public class RolMapper {

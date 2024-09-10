@@ -1,4 +1,4 @@
-package com.emezon.user.app.dtos;
+package com.emezon.user.app.dtos.rol;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,6 +1,6 @@
 package com.emezon.user.infra.outbound.mysql.jpa.mappers;
 
-import com.emezon.user.app.dtos.CreateRolDto;
+import com.emezon.user.app.dtos.rol.CreateRolDto;
 import com.emezon.user.domain.models.Rol;
 import com.emezon.user.infra.outbound.mysql.jpa.entities.RolEntity;
 
