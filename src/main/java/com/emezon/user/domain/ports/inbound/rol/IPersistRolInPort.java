@@ -6,6 +6,4 @@ public interface IPersistRolInPort {
 
     Rol createRol(Rol rol);
 
-    Rol updateRol(Rol rol);
-
 }
