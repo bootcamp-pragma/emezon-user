@@ -2,9 +2,8 @@ package com.emezon.user.domain.usecases;
 
 import com.emezon.user.domain.exceptions.rol.RolNameAlreadyExistsException;
 import com.emezon.user.domain.models.Rol;
-import com.emezon.user.domain.ports.inbound.rol.IPersistRolInPort;
-import com.emezon.user.domain.ports.outbound.IRolRepositoryOutPort;
-import com.emezon.user.infra.outbound.mysql.jpa.repositories.IMySQLJPARolRepository;
+import com.emezon.user.domain.api.rol.IPersistRolInPort;
+import com.emezon.user.domain.spi.IRolRepositoryOutPort;
 
 import java.util.Optional;
 

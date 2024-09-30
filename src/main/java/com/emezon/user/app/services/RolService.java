@@ -2,18 +2,19 @@ package com.emezon.user.app.services;
 
 import com.emezon.user.app.dtos.rol.CreateRolDto;
 import com.emezon.user.app.dtos.rol.RolDTO;
+import com.emezon.user.app.handlers.IRolHandler;
 import com.emezon.user.app.mappers.RolMapper;
+import com.emezon.user.domain.api.rol.IPersistRolInPort;
 import com.emezon.user.domain.models.Rol;
-import com.emezon.user.domain.usecases.PersistRolUseCase;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class RolService {
+public class RolService implements IRolHandler {
 
-    private final PersistRolUseCase persistRolUseCase;
+    private final IPersistRolInPort iPersistRolInPort;
 
     public RolDTO createRol(CreateRolDto rol) {
-        Rol rolModel = persistRolUseCase.createRol(RolMapper.toModel(rol));
+        Rol rolModel = iPersistRolInPort.createRol(RolMapper.toModel(rol));
         return RolMapper.toRolDTO(rolModel);
     }
 

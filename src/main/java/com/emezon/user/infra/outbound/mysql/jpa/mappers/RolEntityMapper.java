@@ -11,11 +11,18 @@ public class RolEntityMapper {
     }
 
     public static RolEntity toEntity(Rol rol) {
-        return new RolEntity(rol.getId(), rol.getName(), rol.getDescription());
+        return RolEntity.builder()
+                .id(rol.getId())
+                .name(rol.getName())
+                .description(rol.getDescription())
+                .build();
     }
 
     public static RolEntity toEntity(CreateRolDto createRolDto) {
-        return new RolEntity(null, createRolDto.getName(), createRolDto.getDescription());
+        return RolEntity.builder()
+                .name(createRolDto.getName())
+                .description(createRolDto.getDescription())
+                .build();
     }
 
     public static Rol toDomain(RolEntity rolEntity) {

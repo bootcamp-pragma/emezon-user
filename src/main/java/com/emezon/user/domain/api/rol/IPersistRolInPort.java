@@ -1,4 +1,4 @@
-package com.emezon.user.domain.ports.inbound.rol;
+package com.emezon.user.domain.api.rol;
 
 import com.emezon.user.domain.models.Rol;
 

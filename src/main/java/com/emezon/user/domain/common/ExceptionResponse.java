@@ -1,6 +1,5 @@
-package com.emezon.user.app.errorhandling;
+package com.emezon.user.domain.common;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,6 +15,13 @@ public class ExceptionResponse {
     private Integer errorCode;
     private String details;
     private LocalDateTime timestamp;
+
+    public ExceptionResponse(String messages, String description, int value) {
+        this.errorMessage = messages;
+        this.requestedURI = description;
+        this.errorCode = value;
+        this.timestamp = LocalDateTime.now();
+    }
 
     public ExceptionResponse(String messages, String description, int value, String details) {
         this.errorMessage = messages;
