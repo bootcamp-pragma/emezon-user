@@ -1,5 +1,7 @@
 package com.emezon.user.domain.models;
 
+import java.time.LocalDate;
+
 public class User {
 
     private String id;
@@ -7,7 +9,7 @@ public class User {
     private String lastName;
     private String docNumber;
     private String cellphone;
-    private String birthDate;
+    private LocalDate birthdate;
     private String email;
     private String password;
     private Rol rol;
@@ -52,12 +54,12 @@ public class User {
         this.cellphone = cellphone;
     }
 
-    public String getBirthDate() {
-        return birthDate;
+    public LocalDate getBirthdate() {
+        return birthdate;
     }
 
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
+    public void setBirthdate(LocalDate birthdate) {
+        this.birthdate = birthdate;
     }
 
     public String getEmail() {
