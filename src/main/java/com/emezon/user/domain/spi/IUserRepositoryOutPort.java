@@ -13,8 +13,6 @@ public interface IUserRepositoryOutPort {
 
     Optional<User> findByEmail(String email);
 
-    Optional<User> findByDocNumber(String docNumber);
-
     List<User> findAll();
 
 }
