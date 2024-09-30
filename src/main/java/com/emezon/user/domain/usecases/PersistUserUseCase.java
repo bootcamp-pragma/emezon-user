@@ -19,8 +19,7 @@ public class PersistUserUseCase implements IPersistUserInPort {
     @Override
     public User createUser(User user) {
         User vuser = UserConstraints.processAndValidate(user);
-        Optional<User> userByEmail = userRepositoryOutPort.findByEmail(vuser.getEmail());
-        if (userByEmail.isPresent()) {
+        if (userRepositoryOutPort.existsByEmail(vuser.getEmail())) {
             throw new UserEmailAlreadyExistsException(vuser.getEmail());
         }
         // TODO: Encrypt password
