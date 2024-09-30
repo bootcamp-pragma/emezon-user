@@ -1,0 +1,28 @@
+app-description: User Microservice API for managing stock of Emezon
+app-title: User Management API
+app-version: 1.0.0
+
+server:
+    port: ${PORT:8074}
+spring:
+    application:
+        name: user
+    datasource:
+        driver-class-name: ${DB_DRIVER:org.h2.Driver}
+        password: ${DB_PASS:root}
+        url: ${DB_URL:jdbc:h2:mem:test-stock-db}
+        username: ${DB_USER:root}
+    jpa:
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                dialect: ${DB_DIALECT:org.hibernate.dialect.H2Dialect}
+                format_sql: false
+        show-sql: true
+springdoc:
+    api-docs:
+        enabled: true
+    swagger-ui:
+        enabled: true
+        path: /docs/swagger-ui.html
