@@ -17,13 +17,6 @@ public class MySQLJPARolAdapter implements IRolRepositoryOutPort {
     private final IMySQLJPARolRepository mySQLJPARolRepository;
 
     @Override
-    public Rol save(Rol rol) {
-        RolEntity rolEntity = RolEntityMapper.toEntity(rol);
-        RolEntity savedRolEntity = mySQLJPARolRepository.save(rolEntity);
-        return RolEntityMapper.toDomain(savedRolEntity);
-    }
-
-    @Override
     public Optional<Rol> findById(String id) {
         Optional<RolEntity> rolEntity = mySQLJPARolRepository.findById(id);
         return rolEntity.map(RolEntityMapper::toDomain);

@@ -11,6 +11,6 @@ public interface IRetrieveRolInPort {
 
     Optional<Rol> findByName(String name);
 
-    List<Rol> findAll(int page, int size, List<String> sorting);
+    List<Rol> findAll();
 
 }

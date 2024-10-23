@@ -7,8 +7,6 @@ import java.util.Optional;
 
 public interface IRolRepositoryOutPort {
 
-    Rol save(Rol rol);
-
     Optional<Rol> findById(String id);
 
     Optional<Rol> findByName(String name);
