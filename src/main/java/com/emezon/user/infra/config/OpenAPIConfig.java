@@ -1,4 +1,4 @@
-package com.emezon.user.infra.doc;
+package com.emezon.user.infra.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
