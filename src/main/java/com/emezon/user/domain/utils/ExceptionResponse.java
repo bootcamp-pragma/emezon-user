@@ -1,4 +1,4 @@
-package com.emezon.user.domain.common;
+package com.emezon.user.domain.utils;
 
 import java.time.LocalDateTime;
 

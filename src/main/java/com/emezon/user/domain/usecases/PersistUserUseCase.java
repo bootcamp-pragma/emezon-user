@@ -6,8 +6,6 @@ import com.emezon.user.domain.exceptions.user.UserEmailAlreadyExistsException;
 import com.emezon.user.domain.models.User;
 import com.emezon.user.domain.spi.IUserRepositoryOutPort;
 
-import java.util.Optional;
-
 public class PersistUserUseCase implements IPersistUserInPort {
 
     private final IUserRepositoryOutPort userRepositoryOutPort;

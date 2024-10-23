@@ -1,7 +1,7 @@
 package com.emezon.user.infra.advices;
 
 import com.emezon.user.app.errorhandling.IApiControllerErrorHandling;
-import com.emezon.user.domain.common.ExceptionResponse;
+import com.emezon.user.domain.utils.ExceptionResponse;
 import org.springframework.context.MessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
