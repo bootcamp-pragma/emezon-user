@@ -11,6 +11,6 @@ public interface IRetrieveUserInPort {
 
     Optional<User> findByEmail(String email);
 
-    List<User> findAll(int page, int size, List<String> sorting);
+    List<User> findAll();
 
 }

@@ -10,8 +10,8 @@ public class RolMapper {
         throw new IllegalStateException("Utility class");
     }
 
-    public static Rol toModel(CreateRolDto createRolDto) {
-        return new Rol(null, createRolDto.getName(), createRolDto.getDescription());
+    public static Rol toModel(RolDTO rolDTO) {
+        return new Rol(rolDTO.getId(), rolDTO.getName(), rolDTO.getDescription());
     }
 
     public static CreateRolDto toCreateRolDto(Rol rol) {

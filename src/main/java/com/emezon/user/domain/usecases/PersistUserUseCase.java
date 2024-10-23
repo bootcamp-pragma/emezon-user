@@ -5,13 +5,16 @@ import com.emezon.user.domain.constants.UserConstraints;
 import com.emezon.user.domain.exceptions.user.UserEmailAlreadyExistsException;
 import com.emezon.user.domain.models.User;
 import com.emezon.user.domain.spi.IUserRepositoryOutPort;
+import com.emezon.user.domain.utils.IPasswordEncoder;
 
 public class PersistUserUseCase implements IPersistUserInPort {
 
     private final IUserRepositoryOutPort userRepositoryOutPort;
+    private final IPasswordEncoder passwordEncoder;
 
-    public PersistUserUseCase(IUserRepositoryOutPort userRepositoryOutPort) {
+    public PersistUserUseCase(IUserRepositoryOutPort userRepositoryOutPort, IPasswordEncoder passwordEncoder) {
         this.userRepositoryOutPort = userRepositoryOutPort;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -20,7 +23,7 @@ public class PersistUserUseCase implements IPersistUserInPort {
         if (userRepositoryOutPort.existsByEmail(vuser.getEmail())) {
             throw new UserEmailAlreadyExistsException(vuser.getEmail());
         }
-        // TODO: Encrypt password
+        vuser.setPassword(passwordEncoder.encode(vuser.getPassword()));
         return userRepositoryOutPort.save(vuser);
     }
 }
