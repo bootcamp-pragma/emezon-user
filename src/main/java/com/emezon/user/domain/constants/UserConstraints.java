@@ -3,6 +3,7 @@ package com.emezon.user.domain.constants;
 import com.emezon.user.domain.models.User;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 public class UserConstraints {
 
@@ -34,11 +35,24 @@ public class UserConstraints {
         if (user.getDocNumber() == null) {
             throw new IllegalArgumentException(UserErrorMessages.USER_DOC_NUMBER_REQUIRED);
         }
-        if (user.getBirthdate() != null) {
+        if (user.getBirthdate() == null) {
             throw new IllegalArgumentException(UserErrorMessages.USER_BIRTHDATE_REQUIRED);
         }
-        if (user.getBirthdate().isAfter(LocalDate.now().minusYears(LEGAL_AGE))) {
-            throw new IllegalArgumentException(String.format(UserErrorMessages.USER_TOO_YOUNG, LEGAL_AGE));
+        LocalDate now = LocalDate.now();
+        int age = Period.between(user.getBirthdate(), now).getYears();
+        if (age < LEGAL_AGE) {
+            throw new IllegalArgumentException(String.format(UserErrorMessages.USER_UNDERAGE, LEGAL_AGE));
+        }
+        if (user.getName() == null) {
+            throw new IllegalArgumentException(UserErrorMessages.USER_NAME_REQUIRED);
+        }
+        user.setName(user.getName().trim());
+        if (user.getLastName() == null) {
+            throw new IllegalArgumentException(UserErrorMessages.USER_LASTNAME_REQUIRED);
+        }
+        user.setLastName(user.getLastName().trim());
+        if (user.getPassword() == null) {
+            throw new IllegalArgumentException(UserErrorMessages.USER_PASSWORD_REQUIRED);
         }
         return user;
     }

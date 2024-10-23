@@ -14,7 +14,7 @@ public class UserErrorMessages {
     public static final String USER_CELLPHONE_INVALID = "User cellphone must be a number and can have the + symbol at the beginning";
     public static final String USER_DOC_NUMBER_INVALID = "User document number must be a number";
     public static final String USER_BIRTHDATE_INVALID = "User birthdate is invalid";
-    public static final String USER_TOO_YOUNG = "User must be at least %d years old";
+    public static final String USER_UNDERAGE = "User must be at least %d years old";
     public static final String USER_EMAIL_ALREADY_EXISTS = "User with email '%s' already exists";
 
     private UserErrorMessages() { }
