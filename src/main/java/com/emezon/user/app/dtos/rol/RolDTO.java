@@ -1,20 +1,16 @@
 package com.emezon.user.app.dtos.rol;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class RolDTO {
     private String id;
     private String name;
     private String description;
-
-    public RolDTO() { }
-
-    public RolDTO(String id, String name, String description) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-    }
 }
