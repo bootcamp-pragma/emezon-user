@@ -1,4 +1,4 @@
-package com.emezon.user.infra.security.jwt;
+package com.emezon.user.infra.security;
 
 import com.emezon.user.domain.utils.IPasswordEncoder;
 import lombok.RequiredArgsConstructor;
