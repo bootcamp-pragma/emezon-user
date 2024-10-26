@@ -1,5 +1,6 @@
 package com.emezon.user.infra.outbound.mysql.jpa.entities;
 
+import com.emezon.user.infra.outbound.mysql.jpa.constants.RoleEntityConstants;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -8,7 +9,7 @@ import org.hibernate.annotations.UuidGenerator;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-@Entity(name = "roles")
+@Entity(name = RoleEntityConstants.TABLE_NAME)
 @Getter
 @Setter
 @AllArgsConstructor
