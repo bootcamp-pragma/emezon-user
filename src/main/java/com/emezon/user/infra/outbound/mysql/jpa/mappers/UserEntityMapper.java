@@ -19,7 +19,7 @@ public class UserEntityMapper {
                 .birthdate(user.getBirthdate())
                 .email(user.getEmail())
                 .password(user.getPassword())
-                .rol(RolEntityMapper.toEntity(user.getRol()))
+                .role(RolEntityMapper.toEntity(user.getRole()))
                 .build();
     }
 
@@ -33,7 +33,7 @@ public class UserEntityMapper {
         user.setBirthdate(userEntity.getBirthdate());
         user.setEmail(userEntity.getEmail());
         user.setPassword(userEntity.getPassword());
-        user.setRol(RolEntityMapper.toDomain(userEntity.getRol()));
+        user.setRole(RolEntityMapper.toDomain(userEntity.getRole()));
         return user;
     }
 

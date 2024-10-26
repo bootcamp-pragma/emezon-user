@@ -12,7 +12,7 @@ public class User {
     private LocalDate birthdate;
     private String email;
     private String password;
-    private Rol rol;
+    private Role role;
 
     public String getId() {
         return id;
@@ -78,12 +78,12 @@ public class User {
         this.password = password;
     }
 
-    public Rol getRol() {
-        return rol;
+    public Role getRole() {
+        return role;
     }
 
-    public void setRol(Rol rol) {
-        this.rol = rol;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
 }

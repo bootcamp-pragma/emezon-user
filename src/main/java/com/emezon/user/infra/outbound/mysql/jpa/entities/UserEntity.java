@@ -45,7 +45,7 @@ public class UserEntity {
     private String password;
 
     @ManyToOne
-    private RolEntity rol;
+    private RoleEntity role;
 
     @CreationTimestamp
     private LocalDateTime createdAt;

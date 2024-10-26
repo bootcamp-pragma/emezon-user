@@ -1,15 +1,15 @@
 package com.emezon.user.domain.models;
 
-public class Rol {
+public class Role {
 
     private String id;
     private String name;
     private String description;
 
-    public Rol() {
+    public Role() {
     }
 
-    public Rol(String id, String name, String description) {
+    public Role(String id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;

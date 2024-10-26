@@ -1,4 +1,4 @@
-package com.emezon.user.app.dtos.rol;
+package com.emezon.user.app.dtos.role;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @RequiredArgsConstructor
-public class RolDTO {
+public class RoleDTO {
     private String id;
     private String name;
     private String description;

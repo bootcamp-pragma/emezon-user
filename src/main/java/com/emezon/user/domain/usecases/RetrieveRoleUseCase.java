@@ -1,32 +1,32 @@
 package com.emezon.user.domain.usecases;
 
-import com.emezon.user.domain.api.rol.IRetrieveRolInPort;
-import com.emezon.user.domain.models.Rol;
+import com.emezon.user.domain.api.IRetrieveRoleInPort;
+import com.emezon.user.domain.models.Role;
 import com.emezon.user.domain.spi.IRolRepositoryOutPort;
 
 import java.util.List;
 import java.util.Optional;
 
-public class RetrieveRolUseCase implements IRetrieveRolInPort {
+public class RetrieveRoleUseCase implements IRetrieveRoleInPort {
 
     private final IRolRepositoryOutPort rolRepositoryOutPort;
 
-    public RetrieveRolUseCase(IRolRepositoryOutPort rolRepositoryOutPort) {
+    public RetrieveRoleUseCase(IRolRepositoryOutPort rolRepositoryOutPort) {
         this.rolRepositoryOutPort = rolRepositoryOutPort;
     }
 
     @Override
-    public Optional<Rol> findById(String id) {
+    public Optional<Role> findById(String id) {
         return rolRepositoryOutPort.findById(id);
     }
 
     @Override
-    public Optional<Rol> findByName(String name) {
+    public Optional<Role> findByName(String name) {
         return rolRepositoryOutPort.findByName(name);
     }
 
     @Override
-    public List<Rol> findAll() {
+    public List<Role> findAll() {
         return rolRepositoryOutPort.findAll();
     }
 }

@@ -1,11 +1,11 @@
 package com.emezon.user.infra.config;
 
-import com.emezon.user.app.handlers.IRolHandler;
-import com.emezon.user.app.services.RolService;
-import com.emezon.user.domain.api.rol.IRetrieveRolInPort;
+import com.emezon.user.app.handlers.IRoleHandler;
+import com.emezon.user.app.services.RoleService;
+import com.emezon.user.domain.api.IRetrieveRoleInPort;
 import com.emezon.user.domain.spi.IRolRepositoryOutPort;
-import com.emezon.user.domain.usecases.RetrieveRolUseCase;
-import com.emezon.user.infra.outbound.mysql.jpa.adapters.MySQLJPARolAdapter;
+import com.emezon.user.domain.usecases.RetrieveRoleUseCase;
+import com.emezon.user.infra.outbound.mysql.jpa.adapters.MySQLJPARoleAdapter;
 import com.emezon.user.infra.outbound.mysql.jpa.repositories.IMySQLJPARolRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -19,17 +19,17 @@ public class RolConfig {
 
     @Bean
     public IRolRepositoryOutPort rolRepositoryOutPort() {
-        return new MySQLJPARolAdapter(mySQLJPARolRepository);
+        return new MySQLJPARoleAdapter(mySQLJPARolRepository);
     }
 
     @Bean
-    IRetrieveRolInPort retrieveRolInPort() {
-        return new RetrieveRolUseCase(rolRepositoryOutPort());
+    IRetrieveRoleInPort retrieveRolInPort() {
+        return new RetrieveRoleUseCase(rolRepositoryOutPort());
     }
 
     @Bean
-    public IRolHandler rolHandler() {
-        return new RolService(retrieveRolInPort());
+    public IRoleHandler rolHandler() {
+        return new RoleService(retrieveRolInPort());
     }
 
 }

@@ -1,6 +1,6 @@
 package com.emezon.user.domain.usecases;
 
-import com.emezon.user.domain.api.user.IRetrieveUserInPort;
+import com.emezon.user.domain.api.IRetrieveUserInPort;
 import com.emezon.user.domain.models.User;
 import com.emezon.user.domain.spi.IUserRepositoryOutPort;
 

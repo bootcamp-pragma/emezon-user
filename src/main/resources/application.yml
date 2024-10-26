@@ -20,9 +20,13 @@ spring:
                 dialect: ${DB_DIALECT:org.hibernate.dialect.H2Dialect}
                 format_sql: false
         show-sql: true
+    security:
+        jwt:
+            secret: ${JWT_SECRET:secret-key-to-change}
+            expiration-time: ${JWT_EXPIRATION:3600}
 springdoc:
     api-docs:
         enabled: true
     swagger-ui:
         enabled: true
-        path: /docs/swagger-ui.html
+        path: /api/docs

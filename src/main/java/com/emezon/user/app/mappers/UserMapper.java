@@ -15,7 +15,7 @@ public class UserMapper {
         user.setName(userDTO.getName());
         user.setLastName(userDTO.getLastName());
         user.setEmail(userDTO.getEmail());
-        user.setRol(RolMapper.toModel(userDTO.getRol()));
+        user.setRole(RoleMapper.toModel(userDTO.getRol()));
         return user;
     }
 
@@ -25,7 +25,7 @@ public class UserMapper {
         userDTO.setName(user.getName());
         userDTO.setLastName(user.getLastName());
         userDTO.setEmail(user.getEmail());
-        userDTO.setRol(RolMapper.toRolDTO(user.getRol()));
+        userDTO.setRol(RoleMapper.toRolDTO(user.getRole()));
         return userDTO;
     }
 

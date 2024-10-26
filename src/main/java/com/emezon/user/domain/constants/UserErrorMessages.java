@@ -17,6 +17,8 @@ public class UserErrorMessages {
     public static final String USER_UNDERAGE = "User must be at least %d years old";
     public static final String USER_EMAIL_ALREADY_EXISTS = "User with email '%s' already exists";
 
+    public static final String USER_NOT_FOUND_BY_EMAIL = "User with email '%s' not found";
+
     private UserErrorMessages() { }
 
 }

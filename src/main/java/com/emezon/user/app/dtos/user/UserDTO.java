@@ -1,6 +1,6 @@
 package com.emezon.user.app.dtos.user;
 
-import com.emezon.user.app.dtos.rol.RolDTO;
+import com.emezon.user.app.dtos.role.RoleDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -20,5 +20,5 @@ public class UserDTO {
     private String cellphone;
     private LocalDate birthdate;
     private String email;
-    private RolDTO rol;
+    private RoleDTO rol;
 }

@@ -2,8 +2,8 @@ package com.emezon.user.infra.config;
 
 import com.emezon.user.app.handlers.IUserHandler;
 import com.emezon.user.app.services.UserService;
-import com.emezon.user.domain.api.user.IPersistUserInPort;
-import com.emezon.user.domain.api.user.IRetrieveUserInPort;
+import com.emezon.user.domain.api.IPersistUserInPort;
+import com.emezon.user.domain.api.IRetrieveUserInPort;
 import com.emezon.user.domain.spi.IUserRepositoryOutPort;
 import com.emezon.user.domain.usecases.PersistUserUseCase;
 import com.emezon.user.domain.usecases.RetrieveUserUseCase;

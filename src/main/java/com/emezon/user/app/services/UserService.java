@@ -3,7 +3,7 @@ package com.emezon.user.app.services;
 import com.emezon.user.app.dtos.user.UserDTO;
 import com.emezon.user.app.handlers.IUserHandler;
 import com.emezon.user.app.mappers.UserMapper;
-import com.emezon.user.domain.api.user.IRetrieveUserInPort;
+import com.emezon.user.domain.api.IRetrieveUserInPort;
 import com.emezon.user.domain.models.User;
 import lombok.AllArgsConstructor;
 

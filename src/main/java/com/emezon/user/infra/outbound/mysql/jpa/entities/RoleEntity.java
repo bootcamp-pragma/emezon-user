@@ -14,7 +14,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RolEntity {
+public class RoleEntity {
 
     @Id
     @UuidGenerator
@@ -26,7 +26,7 @@ public class RolEntity {
     @Column(nullable = false)
     private String description;
 
-    @OneToMany(mappedBy = "rol")
+    @OneToMany(mappedBy = "role")
     private Set<UserEntity> users;
 
     @CreationTimestamp

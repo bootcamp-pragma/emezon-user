@@ -1,4 +1,4 @@
-package com.emezon.user.domain.api.user;
+package com.emezon.user.domain.api;
 
 import com.emezon.user.domain.models.User;
 

@@ -1,6 +1,6 @@
 package com.emezon.user.domain.usecases;
 
-import com.emezon.user.domain.api.user.IPersistUserInPort;
+import com.emezon.user.domain.api.IPersistUserInPort;
 import com.emezon.user.domain.constants.UserConstraints;
 import com.emezon.user.domain.exceptions.user.UserEmailAlreadyExistsException;
 import com.emezon.user.domain.models.User;
