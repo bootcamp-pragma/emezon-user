@@ -17,6 +17,15 @@ public class UserErrorMessages {
     public static final String USER_UNDERAGE = "User must be at least %d years old";
     public static final String USER_EMAIL_ALREADY_EXISTS = "User with email '%s' already exists";
 
+    public static final String USER_NAME_NOT_BLANK = "User name cannot be blank";
+    public static final String USER_LASTNAME_NOT_BLANK = "User lastname cannot be blank";
+    public static final String USER_DOC_NUMBER_NOT_BLANK = "User document number cannot be blank";
+    public static final String USER_CELLPHONE_NOT_BLANK = "User cellphone cannot be blank";
+    public static final String USER_BIRTHDATE_NOT_BLANK = "User birthdate cannot be blank";
+    public static final String USER_EMAIL_NOT_BLANK = "User email cannot be blank";
+    public static final String USER_PASSWORD_NOT_BLANK = "User password cannot be blank";
+    public static final String USER_PASSWORD_TOO_SHORT = "User password must be at least " + UserConstraints.PASSWORD_MIN_LENGTH + " characters long";
+
     public static final String USER_NOT_FOUND_BY_EMAIL = "User with email '%s' not found";
 
     private UserErrorMessages() { }
