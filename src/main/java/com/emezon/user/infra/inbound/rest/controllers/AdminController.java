@@ -2,6 +2,7 @@ package com.emezon.user.infra.inbound.rest.controllers;
 
 
 import com.emezon.user.app.dtos.user.CreateAdminDTO;
+import com.emezon.user.app.dtos.user.CreateAuxBodegaDTO;
 import com.emezon.user.app.dtos.user.UserDTO;
 import com.emezon.user.app.handlers.IAdminHandler;
 import com.emezon.user.app.handlers.IUserHandler;
@@ -29,6 +30,14 @@ public class AdminController {
             @RequestBody @Valid CreateAdminDTO createAdminDTO) {
         URI location = URI.create(RestApiConstants.API_ADMIN + "/");
         UserDTO createdUser = adminHandler.createAdmin(createAdminDTO);
+        return ResponseEntity.created(location).body(createdUser);
+    }
+
+    @PostMapping("/aux-bodega")
+    public ResponseEntity<UserDTO> addNewAuxBodega(
+            @RequestBody @Valid CreateAuxBodegaDTO createAuxBodegaDTO) {
+        URI location = URI.create(RestApiConstants.API_ADMIN + "/aux-bodega");
+        UserDTO createdUser = adminHandler.createAuxBodega(createAuxBodegaDTO);
         return ResponseEntity.created(location).body(createdUser);
     }
 
