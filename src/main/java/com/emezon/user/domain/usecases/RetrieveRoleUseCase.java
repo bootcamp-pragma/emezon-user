@@ -2,16 +2,16 @@ package com.emezon.user.domain.usecases;
 
 import com.emezon.user.domain.api.IRetrieveRoleInPort;
 import com.emezon.user.domain.models.Role;
-import com.emezon.user.domain.spi.IRolRepositoryOutPort;
+import com.emezon.user.domain.spi.IRoleRepositoryOutPort;
 
 import java.util.List;
 import java.util.Optional;
 
 public class RetrieveRoleUseCase implements IRetrieveRoleInPort {
 
-    private final IRolRepositoryOutPort rolRepositoryOutPort;
+    private final IRoleRepositoryOutPort rolRepositoryOutPort;
 
-    public RetrieveRoleUseCase(IRolRepositoryOutPort rolRepositoryOutPort) {
+    public RetrieveRoleUseCase(IRoleRepositoryOutPort rolRepositoryOutPort) {
         this.rolRepositoryOutPort = rolRepositoryOutPort;
     }
 
