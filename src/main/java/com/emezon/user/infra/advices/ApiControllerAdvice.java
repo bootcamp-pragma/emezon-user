@@ -3,7 +3,6 @@ package com.emezon.user.infra.advices;
 import com.emezon.user.app.errorhandling.IApiControllerErrorHandling;
 import com.emezon.user.domain.constants.UserErrorMessages;
 import com.emezon.user.domain.utils.ExceptionResponse;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import org.springframework.context.MessageSourceResolvable;
 import org.springframework.http.HttpStatus;
