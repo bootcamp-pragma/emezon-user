@@ -11,6 +11,7 @@ public class UserConstraints {
     public static final int LEGAL_AGE = 18;
     public static final String EMAIL_REGEX = "^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
     public static final String CELLPHONE_REGEX = "^\\+?[0-9]+$"; // "^\\+?[0-9]{7,13}$" for 7 to 13 digits
+    public static final String DOC_NUMBER_REGEX = "^[0-9]{5,13}$";
     public static final String DATE_PATTERN = "yyyy-MM-dd";
     public static final String DATE_REGEX = "^(19|20)\\d\\d-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$";
     public static final String PASSWORD_REGEX = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}$";

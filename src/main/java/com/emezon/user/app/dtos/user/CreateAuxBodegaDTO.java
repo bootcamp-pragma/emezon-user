@@ -38,7 +38,6 @@ public class CreateAuxBodegaDTO {
     private String cellphone;
 
     @NotNull(message = UserErrorMessages.USER_BIRTHDATE_REQUIRED)
-    @NotBlank(message = UserErrorMessages.USER_BIRTHDATE_NOT_BLANK)
     @Pattern(regexp = UserConstraints.DATE_REGEX, message = UserErrorMessages.USER_BIRTHDATE_INVALID)
     @JsonFormat(pattern = UserConstraints.DATE_PATTERN, shape = JsonFormat.Shape.STRING)
     private LocalDate birthdate;

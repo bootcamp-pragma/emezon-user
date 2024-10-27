@@ -7,6 +7,8 @@ public class SecurityConstants {
             "/v3/api-docs/**",
             "/api/swagger-ui/**",
             RestApiConstants.API_AUTH + "/**",
+            RestApiConstants.API_ROLE + "/**",
+            RestApiConstants.API_ADMIN + "/**",
     };
 
     public static final String ROLE_ADMIN = "ADMIN";

@@ -6,4 +6,6 @@ public interface IApiControllerErrorHandling<T> {
 
     Object handleConstraintViolationException(Exception ex, T request);
 
+    Object handleInvalidFormatException(Exception ex, T request);
+
 }

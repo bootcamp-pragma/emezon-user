@@ -16,8 +16,13 @@ public class UserMapper {
         user.setId(userDTO.getId());
         user.setName(userDTO.getName());
         user.setLastName(userDTO.getLastName());
+        user.setDocNumber(userDTO.getDocNumber());
+        user.setCellphone(userDTO.getCellphone());
+        user.setBirthdate(userDTO.getBirthdate());
         user.setEmail(userDTO.getEmail());
-        user.setRole(RoleMapper.toModel(userDTO.getRol()));
+        if (userDTO.getRol() != null){
+            user.setRole(RoleMapper.toModel(userDTO.getRol()));
+        }
         return user;
     }
 
@@ -40,8 +45,13 @@ public class UserMapper {
         userDTO.setId(user.getId());
         userDTO.setName(user.getName());
         userDTO.setLastName(user.getLastName());
+        userDTO.setDocNumber(user.getDocNumber());
+        userDTO.setCellphone(user.getCellphone());
+        userDTO.setBirthdate(user.getBirthdate());
         userDTO.setEmail(user.getEmail());
-        userDTO.setRol(RoleMapper.toRolDTO(user.getRole()));
+        if (user.getRole() != null) {
+            userDTO.setRol(RoleMapper.toRolDTO(user.getRole()));
+        }
         return userDTO;
     }
 
