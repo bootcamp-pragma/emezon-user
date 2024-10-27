@@ -1,9 +1,13 @@
 package com.emezon.user.infra.config;
 
+import com.emezon.user.app.handlers.IAdminHandler;
+import com.emezon.user.app.handlers.IRoleHandler;
 import com.emezon.user.app.handlers.IUserHandler;
+import com.emezon.user.app.services.AdminService;
 import com.emezon.user.app.services.UserService;
 import com.emezon.user.domain.api.IPersistUserInPort;
 import com.emezon.user.domain.api.IRetrieveUserInPort;
+import com.emezon.user.domain.spi.IRoleRepositoryOutPort;
 import com.emezon.user.domain.spi.IUserRepositoryOutPort;
 import com.emezon.user.domain.usecases.PersistUserUseCase;
 import com.emezon.user.domain.usecases.RetrieveUserUseCase;
@@ -22,6 +26,8 @@ public class UserConfig {
 
     private final IMySQLJPAUserRepository mySQLJPAUserRepository;
     private final PasswordEncoder passwordEncoder;
+    private final IRoleRepositoryOutPort roleRepositoryOutPort;
+    private final IRoleHandler roleHandler;
 
     @Bean
     public IUserRepositoryOutPort userRepositoryOutPort() {
@@ -40,12 +46,17 @@ public class UserConfig {
 
     @Bean
     public IPersistUserInPort persistUserInPort() {
-        return new PersistUserUseCase(userRepositoryOutPort(), passwordEncoderImpl());
+        return new PersistUserUseCase(userRepositoryOutPort(), passwordEncoderImpl(), roleRepositoryOutPort);
     }
 
     @Bean
     public IUserHandler userHandler() {
-        return new UserService(retrieveUserInPort());
+        return new UserService(retrieveUserInPort(), persistUserInPort());
+    }
+
+    @Bean
+    public IAdminHandler adminHandler() {
+        return new AdminService(userHandler(), roleHandler);
     }
 
 }

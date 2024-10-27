@@ -3,7 +3,7 @@ package com.emezon.user.infra.config;
 import com.emezon.user.app.handlers.IRoleHandler;
 import com.emezon.user.app.services.RoleService;
 import com.emezon.user.domain.api.IRetrieveRoleInPort;
-import com.emezon.user.domain.spi.IRolRepositoryOutPort;
+import com.emezon.user.domain.spi.IRoleRepositoryOutPort;
 import com.emezon.user.domain.usecases.RetrieveRoleUseCase;
 import com.emezon.user.infra.outbound.mysql.jpa.adapters.MySQLJPARoleAdapter;
 import com.emezon.user.infra.outbound.mysql.jpa.repositories.IMySQLJPARolRepository;
@@ -18,7 +18,7 @@ public class RolConfig {
     private final IMySQLJPARolRepository mySQLJPARolRepository;
 
     @Bean
-    public IRolRepositoryOutPort rolRepositoryOutPort() {
+    public IRoleRepositoryOutPort rolRepositoryOutPort() {
         return new MySQLJPARoleAdapter(mySQLJPARolRepository);
     }
 
