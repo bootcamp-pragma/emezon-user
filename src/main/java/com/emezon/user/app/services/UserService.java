@@ -3,6 +3,7 @@ package com.emezon.user.app.services;
 import com.emezon.user.app.dtos.user.UserDTO;
 import com.emezon.user.app.handlers.IUserHandler;
 import com.emezon.user.app.mappers.UserMapper;
+import com.emezon.user.domain.api.IPersistUserInPort;
 import com.emezon.user.domain.api.IRetrieveUserInPort;
 import com.emezon.user.domain.models.User;
 import lombok.AllArgsConstructor;
@@ -14,6 +15,13 @@ import java.util.Optional;
 public class UserService implements IUserHandler {
 
     private final IRetrieveUserInPort retrieveUserInPort;
+    private final IPersistUserInPort persistUserInPort;
+
+    @Override
+    public UserDTO createUser(User user) {
+        User userCreated = persistUserInPort.createUser(user);
+        return UserMapper.toUserDTO(userCreated);
+    }
 
     @Override
     public UserDTO getUserById(String id) {
