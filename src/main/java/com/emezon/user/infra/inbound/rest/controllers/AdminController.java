@@ -1,6 +1,5 @@
 package com.emezon.user.infra.inbound.rest.controllers;
 
-
 import com.emezon.user.app.dtos.user.CreateAdminDTO;
 import com.emezon.user.app.dtos.user.CreateAuxBodegaDTO;
 import com.emezon.user.app.dtos.user.UserDTO;
@@ -10,6 +9,7 @@ import com.emezon.user.infra.constants.RestApiConstants;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +33,7 @@ public class AdminController {
         return ResponseEntity.created(location).body(createdUser);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/aux-bodega")
     public ResponseEntity<UserDTO> addNewAuxBodega(
             @RequestBody @Valid CreateAuxBodegaDTO createAuxBodegaDTO) {
