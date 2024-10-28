@@ -25,6 +25,7 @@ public class AdminController {
     private final IUserHandler userHandler;
     private final IAdminHandler adminHandler;
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping()
     public ResponseEntity<UserDTO> addNewAdmin(
             @RequestBody @Valid CreateAdminDTO createAdminDTO) {
