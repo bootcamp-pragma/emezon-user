@@ -9,7 +9,6 @@ import com.emezon.user.app.handlers.IRoleHandler;
 import com.emezon.user.app.handlers.IUserHandler;
 import com.emezon.user.app.mappers.RoleMapper;
 import com.emezon.user.app.mappers.UserMapper;
-import com.emezon.user.domain.models.Role;
 import com.emezon.user.domain.models.User;
 import com.emezon.user.domain.models.UserRoles;
 import lombok.AllArgsConstructor;
