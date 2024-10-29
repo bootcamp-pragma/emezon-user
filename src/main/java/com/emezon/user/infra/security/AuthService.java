@@ -2,6 +2,7 @@ package com.emezon.user.infra.security;
 
 import com.emezon.user.app.dtos.auth.AuthRequest;
 import com.emezon.user.app.dtos.auth.AuthResponse;
+import com.emezon.user.app.handlers.IAuthHandler;
 import com.emezon.user.domain.api.IJwtServicePort;
 import com.emezon.user.domain.constants.UserErrorMessages;
 import com.emezon.user.infra.constants.SecurityConstants;
@@ -18,13 +19,13 @@ import java.util.Map;
 
 @Transactional
 @RequiredArgsConstructor
-public class AuthService {
+public class AuthService implements IAuthHandler {
 
     private final IMySQLJPAUserRepository userRepository;
     private final IJwtServicePort jwtService;
     private final AuthenticationManager authenticationManager;
 
-    public AuthResponse authenticate(AuthRequest request) {
+    public AuthResponse signin(AuthRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.getEmail(),
@@ -46,6 +47,11 @@ public class AuthService {
 
         String jwtToken = jwtService.generateToken(extraClaims, data);
         return new AuthResponse(jwtToken);
+    }
+
+    @Override
+    public AuthResponse signup(AuthRequest request) {
+        return null;
     }
 
 }

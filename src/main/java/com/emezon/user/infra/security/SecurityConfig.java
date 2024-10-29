@@ -1,5 +1,6 @@
 package com.emezon.user.infra.security;
 
+import com.emezon.user.app.handlers.IAuthHandler;
 import com.emezon.user.domain.api.IJwtServicePort;
 import com.emezon.user.domain.constants.UserErrorMessages;
 import com.emezon.user.infra.constants.RestApiConstants;
@@ -91,7 +92,7 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthService authService() throws Exception {
+    public IAuthHandler authService() throws Exception {
         return new AuthService(userRepository, jwtService(), authenticationManager());
     }
 
