@@ -1,6 +1,7 @@
 package com.emezon.user.infra.security;
 
 import com.emezon.user.domain.api.IJwtServicePort;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
@@ -61,7 +62,11 @@ public class JwtService implements IJwtServicePort {
     }
 
     private Date extractExpiration(String token) {
-        return extractClaim(token, claim -> (Date) claim.get("exp"));
+        return extractClaim(token, claim -> {
+            Number exp = (Number) claim.get("exp");
+            long expLong = exp.longValue();
+            return new Date(expLong * 1000);
+        });
     }
 
     private boolean isTokenExpired(String token) {
@@ -71,6 +76,10 @@ public class JwtService implements IJwtServicePort {
     @Override
     public boolean isTokenValid(String token, Map<String, Object> data) {
         final String username = extractUsername(token);
-        return (username.equals(data.get("username"))) && !isTokenExpired(token);
+        if (isTokenExpired(token)) {
+            System.out.println("Token has expired");
+            throw new ExpiredJwtException(null, null, "Token has expired");
+        }
+        return username.equals(data.get("username"));
     }
 }

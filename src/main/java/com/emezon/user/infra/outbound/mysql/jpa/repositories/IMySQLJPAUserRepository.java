@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface IMySQLJPAUserRepository extends JpaRepository<UserEntity, String> {
 
-    @Query("SELECT u FROM users u WHERE LOWER(u.email) = LOWER(:email)")
+//    @Query("SELECT u FROM users u WHERE LOWER(u.email) = LOWER(:email)")
     Optional<UserEntity> findByEmail(String email);
 
 }

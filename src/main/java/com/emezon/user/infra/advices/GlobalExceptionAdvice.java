@@ -2,6 +2,7 @@ package com.emezon.user.infra.advices;
 
 import com.emezon.user.app.errorhandling.IGlobalExceptionHandler;
 import com.emezon.user.domain.utils.ExceptionResponse;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -9,7 +10,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
 @ControllerAdvice
-public class GlobalExceptionHandler implements IGlobalExceptionHandler<WebRequest> {
+@Order(2)
+public class GlobalExceptionAdvice implements IGlobalExceptionHandler<WebRequest> {
 
     @Override
     @ExceptionHandler(Exception.class)

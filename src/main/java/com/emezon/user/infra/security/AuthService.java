@@ -2,6 +2,7 @@ package com.emezon.user.infra.security;
 
 import com.emezon.user.app.dtos.auth.AuthRequest;
 import com.emezon.user.app.dtos.auth.AuthResponse;
+import com.emezon.user.app.dtos.user.CreateClientDTO;
 import com.emezon.user.app.handlers.IAuthHandler;
 import com.emezon.user.domain.api.IJwtServicePort;
 import com.emezon.user.domain.constants.UserErrorMessages;
@@ -24,6 +25,7 @@ public class AuthService implements IAuthHandler {
     private final IMySQLJPAUserRepository userRepository;
     private final IJwtServicePort jwtService;
     private final AuthenticationManager authenticationManager;
+//    private final IAdminHandler adminHandler;
 
     public AuthResponse signin(AuthRequest request) {
         authenticationManager.authenticate(
@@ -35,8 +37,7 @@ public class AuthService implements IAuthHandler {
 
         UserEntity user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new UsernameNotFoundException(
-                        String.format(UserErrorMessages.USER_NOT_FOUND_BY_EMAIL, request.getEmail()
-                        )
+                        String.format(UserErrorMessages.USER_NOT_FOUND)
                 ));
 
         Map<String, Object> extraClaims = new HashMap<>();
@@ -50,7 +51,11 @@ public class AuthService implements IAuthHandler {
     }
 
     @Override
-    public AuthResponse signup(AuthRequest request) {
+    public AuthResponse signup(CreateClientDTO clientDTO) {
+        // TODO: Implement signup
+        // use adminHandler to create a new Client
+//        AuthRequest authRequest = new AuthRequest(clientDTO.getEmail(), clientDTO.getPassword());
+//        return signin(authRequest);
         return null;
     }
 

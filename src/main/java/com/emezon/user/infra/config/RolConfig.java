@@ -23,7 +23,7 @@ public class RolConfig {
     }
 
     @Bean
-    IRetrieveRoleInPort retrieveRolInPort() {
+    public IRetrieveRoleInPort retrieveRolInPort() {
         return new RetrieveRoleUseCase(rolRepositoryOutPort());
     }
 

@@ -1,6 +1,6 @@
 package com.emezon.user.infra.advices;
 
-import com.emezon.user.app.errorhandling.IApiControllerErrorHandling;
+import com.emezon.user.app.errorhandling.IApiControllerErrorHandler;
 import com.emezon.user.domain.constants.UserErrorMessages;
 import com.emezon.user.domain.utils.ExceptionResponse;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
@@ -19,7 +19,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @ControllerAdvice
-public class ApiControllerAdvice implements IApiControllerErrorHandling<WebRequest> {
+public class ApiControllerAdvice implements IApiControllerErrorHandler<WebRequest> {
 
     @Override
     @ExceptionHandler(MethodArgumentNotValidException.class)

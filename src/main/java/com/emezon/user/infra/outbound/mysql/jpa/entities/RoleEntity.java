@@ -6,16 +6,19 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.UuidGenerator;
+import org.springframework.security.core.GrantedAuthority;
+
 import java.time.LocalDateTime;
 import java.util.Set;
 
-@Entity(name = RoleEntityConstants.TABLE_NAME)
+@Entity
+@Table(name = RoleEntityConstants.TABLE_NAME)
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class RoleEntity {
+public class RoleEntity implements GrantedAuthority {
 
     @Id
     @UuidGenerator
@@ -36,5 +39,9 @@ public class RoleEntity {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
+    @Override
+    public String getAuthority() {
+        return RoleEntityConstants.ROLE_PREFIX + this.name;
+    }
 
 }

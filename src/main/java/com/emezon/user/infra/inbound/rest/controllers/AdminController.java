@@ -4,6 +4,7 @@ import com.emezon.user.app.dtos.user.CreateAdminDTO;
 import com.emezon.user.app.dtos.user.CreateAuxBodegaDTO;
 import com.emezon.user.app.dtos.user.UserDTO;
 import com.emezon.user.app.handlers.IAdminHandler;
+import com.emezon.user.app.handlers.IAuxBodegaHandler;
 import com.emezon.user.app.handlers.IUserHandler;
 import com.emezon.user.infra.constants.RestApiConstants;
 import jakarta.validation.Valid;
@@ -22,8 +23,8 @@ import java.net.URI;
 @RequiredArgsConstructor
 public class AdminController {
 
-    private final IUserHandler userHandler;
     private final IAdminHandler adminHandler;
+    private final IAuxBodegaHandler auxBodegaHandler;
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping()
@@ -39,8 +40,10 @@ public class AdminController {
     public ResponseEntity<UserDTO> addNewAuxBodega(
             @RequestBody @Valid CreateAuxBodegaDTO createAuxBodegaDTO) {
         URI location = URI.create(RestApiConstants.API_ADMIN + "/aux-bodega");
-        UserDTO createdUser = adminHandler.createAuxBodega(createAuxBodegaDTO);
-        return ResponseEntity.created(location).body(createdUser);
+//        UserDTO createdUser = auxBodegaHandler.createAuxBodega(createAuxBodegaDTO);
+//        return ResponseEntity.created(location).body(createdUser);
+
+        return ResponseEntity.created(location).body(new UserDTO());
     }
 
 }
