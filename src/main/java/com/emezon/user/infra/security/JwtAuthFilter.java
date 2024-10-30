@@ -13,7 +13,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
-import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -22,7 +21,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-@Component
+
 @RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter {
 

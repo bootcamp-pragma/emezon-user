@@ -26,7 +26,6 @@ public class AdminController {
     private final IAdminHandler adminHandler;
     private final IAuxBodegaHandler auxBodegaHandler;
 
-    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping()
     public ResponseEntity<UserDTO> addNewAdmin(
             @RequestBody @Valid CreateAdminDTO createAdminDTO) {
@@ -35,7 +34,6 @@ public class AdminController {
         return ResponseEntity.created(location).body(createdUser);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/aux-bodega")
     public ResponseEntity<UserDTO> addNewAuxBodega(
             @RequestBody @Valid CreateAuxBodegaDTO createAuxBodegaDTO) {

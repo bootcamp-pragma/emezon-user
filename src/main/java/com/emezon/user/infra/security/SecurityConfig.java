@@ -33,7 +33,6 @@ public class SecurityConfig {
 
     private final IMySQLJPAUserRepository userRepository;
     private final AuthenticationConfiguration authenticationConfiguration;
-    private final JwtAuthFilter jwtAuthFilter;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -52,6 +51,11 @@ public class SecurityConfig {
     }
 
     @Bean
+    public JwtAuthFilter jwtAuthFilter() {
+        return new JwtAuthFilter(jwtService(), userDetailsService());
+    }
+
+    @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
@@ -66,7 +70,7 @@ public class SecurityConfig {
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 .authenticationProvider(authenticationProvider())
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(jwtAuthFilter(), UsernamePasswordAuthenticationFilter.class)
                 .build();
     }
 
