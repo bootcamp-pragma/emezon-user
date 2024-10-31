@@ -5,7 +5,7 @@ import com.emezon.user.app.dtos.user.CreateAuxBodegaDTO;
 import com.emezon.user.app.dtos.user.UserDTO;
 import com.emezon.user.app.handlers.IAdminHandler;
 import com.emezon.user.app.handlers.IAuxBodegaHandler;
-import com.emezon.user.infra.constants.RestApiConstants;
+import com.emezon.user.infra.inbound.rest.constants.RestApiConstants;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

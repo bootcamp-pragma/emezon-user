@@ -1,4 +1,6 @@
-package com.emezon.user.infra.constants;
+package com.emezon.user.infra.security;
+
+import com.emezon.user.infra.inbound.rest.constants.RestApiConstants;
 
 public class SecurityConstants {
 

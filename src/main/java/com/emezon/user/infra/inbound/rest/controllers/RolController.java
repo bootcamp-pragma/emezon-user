@@ -2,7 +2,7 @@ package com.emezon.user.infra.inbound.rest.controllers;
 
 import com.emezon.user.app.dtos.role.RoleDTO;
 import com.emezon.user.app.handlers.IRoleHandler;
-import com.emezon.user.infra.constants.RestApiConstants;
+import com.emezon.user.infra.inbound.rest.constants.RestApiConstants;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

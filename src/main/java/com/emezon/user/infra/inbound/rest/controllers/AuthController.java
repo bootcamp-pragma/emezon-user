@@ -4,7 +4,7 @@ import com.emezon.user.app.dtos.auth.AuthRequest;
 import com.emezon.user.app.dtos.auth.AuthResponse;
 import com.emezon.user.app.dtos.user.CreateClientDTO;
 import com.emezon.user.app.handlers.IAuthHandler;
-import com.emezon.user.infra.constants.RestApiConstants;
+import com.emezon.user.infra.inbound.rest.constants.RestApiConstants;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

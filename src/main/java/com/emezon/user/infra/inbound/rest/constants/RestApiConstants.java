@@ -1,4 +1,4 @@
-package com.emezon.user.infra.constants;
+package com.emezon.user.infra.inbound.rest.constants;
 
 public class RestApiConstants {
 

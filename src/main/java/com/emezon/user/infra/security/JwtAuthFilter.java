@@ -1,7 +1,6 @@
 package com.emezon.user.infra.security;
 
 import com.emezon.user.domain.api.IJwtServicePort;
-import com.emezon.user.infra.constants.SecurityConstants;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

@@ -1,6 +1,6 @@
 package com.emezon.user.infra.inbound.rest.controllers;
 
-import com.emezon.user.infra.constants.RestApiConstants;
+import com.emezon.user.infra.inbound.rest.constants.RestApiConstants;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

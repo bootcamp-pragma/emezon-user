@@ -10,7 +10,6 @@ import com.emezon.user.domain.api.IJwtServicePort;
 import com.emezon.user.domain.api.IRetrieveUserInPort;
 import com.emezon.user.domain.constants.UserErrorMessages;
 import com.emezon.user.domain.models.User;
-import com.emezon.user.infra.constants.SecurityConstants;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
