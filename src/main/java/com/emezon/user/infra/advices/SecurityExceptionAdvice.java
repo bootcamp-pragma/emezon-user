@@ -1,30 +1,27 @@
 package com.emezon.user.infra.advices;
 
-import com.emezon.user.app.errorhandling.IGlobalExceptionHandler;
 import com.emezon.user.domain.utils.ExceptionResponse;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+
+
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.context.request.WebRequest;
 
 @ControllerAdvice
-@Order(20)
-public class GlobalExceptionAdvice implements IGlobalExceptionHandler<WebRequest> {
+@Order(10)
+public class SecurityExceptionAdvice {
 
-    @Override
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<ExceptionResponse> handleGeneralException(Exception ex, WebRequest request) {
-        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
-        String message = ex.getMessage() != null ? ex.getMessage() : "Ha ocurrido un error inesperado.";
-
+    @ExceptionHandler(BadCredentialsException.class)
+    public ResponseEntity<ExceptionResponse> handleBadCredentialsException(BadCredentialsException ex, WebRequest request) {
+        HttpStatus status = HttpStatus.UNAUTHORIZED;
         ExceptionResponse response = new ExceptionResponse(
-                message,
+                ex.getMessage(),
                 request.getDescription(false),
-                status.value()
-        );
-
+                status.value());
         return new ResponseEntity<>(response, status);
     }
 

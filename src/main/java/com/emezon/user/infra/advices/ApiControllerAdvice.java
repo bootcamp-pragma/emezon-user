@@ -5,6 +5,7 @@ import com.emezon.user.domain.constants.UserErrorMessages;
 import com.emezon.user.domain.utils.ExceptionResponse;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import org.springframework.context.MessageSourceResolvable;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.ObjectError;
@@ -19,6 +20,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @ControllerAdvice
+@Order(1)
 public class ApiControllerAdvice implements IApiControllerErrorHandler<WebRequest> {
 
     @Override

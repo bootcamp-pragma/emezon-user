@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.net.URI;
+
 @RestController
 @RequestMapping(RestApiConstants.API_AUTH)
 @RequiredArgsConstructor
@@ -29,7 +31,8 @@ public class AuthController {
     @PostMapping("/signup")
     public ResponseEntity<AuthResponse> signup(@RequestBody @Valid CreateClientDTO createClientDTO) {
         AuthResponse authResponse = authHandler.signup(createClientDTO);
-        return ResponseEntity.ok(authResponse);
+        URI location = URI.create(RestApiConstants.API_AUTH + "/signup");
+        return ResponseEntity.created(location).body(authResponse);
     }
 
 }
