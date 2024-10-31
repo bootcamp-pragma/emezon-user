@@ -1,11 +1,15 @@
 package com.emezon.user.infra.security;
 
 import com.emezon.user.app.handlers.IAuthHandler;
+import com.emezon.user.app.handlers.IClientHandler;
 import com.emezon.user.domain.api.IJwtServicePort;
+import com.emezon.user.domain.api.IRetrieveUserInPort;
 import com.emezon.user.domain.constants.UserErrorMessages;
+import com.emezon.user.domain.models.User;
+import com.emezon.user.domain.models.UserRoles;
 import com.emezon.user.infra.constants.RestApiConstants;
 import com.emezon.user.infra.constants.SecurityConstants;
-import com.emezon.user.infra.outbound.mysql.jpa.repositories.IMySQLJPAUserRepository;
+import com.emezon.user.infra.outbound.mysql.jpa.mappers.UserEntityMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +24,6 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -31,13 +34,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    private final IMySQLJPAUserRepository userRepository;
+    private final IRetrieveUserInPort retrieveUserInPort;
     private final AuthenticationConfiguration authenticationConfiguration;
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+    private final IClientHandler clientHandler;
+    private final PasswordEncoder passwordEncoder;
 
     @Bean
     public IJwtServicePort jwtService() {
@@ -46,8 +46,11 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return username -> userRepository.findByEmail(username).orElseThrow(
-                () -> new UsernameNotFoundException(UserErrorMessages.USER_NOT_FOUND));
+        return username -> {
+            User user = retrieveUserInPort.findByEmail(username).orElseThrow(
+                    () -> new UsernameNotFoundException(UserErrorMessages.USER_NOT_FOUND));
+            return UserEntityMapper.toEntity(user);
+        };
     }
 
     @Bean
@@ -62,7 +65,7 @@ public class SecurityConfig {
                 .cors(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req -> req
                         .requestMatchers(SecurityConstants.WHITE_LIST_URL).permitAll()
-                        .requestMatchers(RestApiConstants.API_ADMIN + "/**").hasRole(SecurityConstants.ROLE_ADMIN)
+                        .requestMatchers(RestApiConstants.API_ADMIN + "/**").hasRole(UserRoles.ADMIN.toString())
                         .anyRequest().authenticated()
                 )
                 .formLogin(AbstractHttpConfigurer::disable)
@@ -83,13 +86,13 @@ public class SecurityConfig {
     public AuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService());
-        authProvider.setPasswordEncoder(passwordEncoder());
+        authProvider.setPasswordEncoder(passwordEncoder);
         return authProvider;
     }
 
     @Bean
     public IAuthHandler authService() throws Exception {
-        return new AuthService(userRepository, jwtService(), authenticationManager());
+        return new AuthService(retrieveUserInPort, jwtService(), authenticationManager(), clientHandler);
     }
 
 }

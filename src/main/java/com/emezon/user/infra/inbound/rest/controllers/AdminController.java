@@ -5,12 +5,10 @@ import com.emezon.user.app.dtos.user.CreateAuxBodegaDTO;
 import com.emezon.user.app.dtos.user.UserDTO;
 import com.emezon.user.app.handlers.IAdminHandler;
 import com.emezon.user.app.handlers.IAuxBodegaHandler;
-import com.emezon.user.app.handlers.IUserHandler;
 import com.emezon.user.infra.constants.RestApiConstants;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,10 +36,8 @@ public class AdminController {
     public ResponseEntity<UserDTO> addNewAuxBodega(
             @RequestBody @Valid CreateAuxBodegaDTO createAuxBodegaDTO) {
         URI location = URI.create(RestApiConstants.API_ADMIN + "/aux-bodega");
-//        UserDTO createdUser = auxBodegaHandler.createAuxBodega(createAuxBodegaDTO);
-//        return ResponseEntity.created(location).body(createdUser);
-
-        return ResponseEntity.created(location).body(new UserDTO());
+        UserDTO createdUser = auxBodegaHandler.createAuxBodega(createAuxBodegaDTO);
+        return ResponseEntity.created(location).body(createdUser);
     }
 
 }

@@ -3,12 +3,14 @@ package com.emezon.user.infra.security;
 import com.emezon.user.app.dtos.auth.AuthRequest;
 import com.emezon.user.app.dtos.auth.AuthResponse;
 import com.emezon.user.app.dtos.user.CreateClientDTO;
+import com.emezon.user.app.dtos.user.UserDTO;
 import com.emezon.user.app.handlers.IAuthHandler;
+import com.emezon.user.app.handlers.IClientHandler;
 import com.emezon.user.domain.api.IJwtServicePort;
+import com.emezon.user.domain.api.IRetrieveUserInPort;
 import com.emezon.user.domain.constants.UserErrorMessages;
+import com.emezon.user.domain.models.User;
 import com.emezon.user.infra.constants.SecurityConstants;
-import com.emezon.user.infra.outbound.mysql.jpa.entities.UserEntity;
-import com.emezon.user.infra.outbound.mysql.jpa.repositories.IMySQLJPAUserRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,10 +24,10 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class AuthService implements IAuthHandler {
 
-    private final IMySQLJPAUserRepository userRepository;
+    private final IRetrieveUserInPort retrieveUserInPort;
     private final IJwtServicePort jwtService;
     private final AuthenticationManager authenticationManager;
-//    private final IAdminHandler adminHandler;
+    private final IClientHandler clientHandler;
 
     public AuthResponse signin(AuthRequest request) {
         authenticationManager.authenticate(
@@ -35,10 +37,9 @@ public class AuthService implements IAuthHandler {
                 )
         );
 
-        UserEntity user = userRepository.findByEmail(request.getEmail())
-                .orElseThrow(() -> new UsernameNotFoundException(
-                        String.format(UserErrorMessages.USER_NOT_FOUND)
-                ));
+        User user = retrieveUserInPort.findByEmail(request.getEmail()).orElseThrow(
+                () -> new UsernameNotFoundException(UserErrorMessages.USER_NOT_FOUND)
+        );
 
         Map<String, Object> extraClaims = new HashMap<>();
         extraClaims.put(SecurityConstants.ROLE_NAME_CLAIM, user.getRole().getName());
@@ -52,11 +53,12 @@ public class AuthService implements IAuthHandler {
 
     @Override
     public AuthResponse signup(CreateClientDTO clientDTO) {
-        // TODO: Implement signup
-        // use adminHandler to create a new Client
-//        AuthRequest authRequest = new AuthRequest(clientDTO.getEmail(), clientDTO.getPassword());
-//        return signin(authRequest);
-        return null;
+        UserDTO user = clientHandler.createClient(clientDTO);
+        if (user == null) {
+            throw new RuntimeException("Error creating user");
+        }
+        AuthRequest authRequest = new AuthRequest(user.getEmail(), clientDTO.getPassword());
+        return signin(authRequest);
     }
 
 }

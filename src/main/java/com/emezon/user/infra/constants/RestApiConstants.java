@@ -8,6 +8,7 @@ public class RestApiConstants {
     public static final String API_CLIENT = API_BASE + "/client";
     public static final String API_AUTH = API_BASE + "/auth";
     public static final String API_ROLE = API_BASE + "/role";
+    public static final String API_PING = API_BASE + "/ping";
 
     private RestApiConstants() { }
 

@@ -1,19 +1,19 @@
 package com.emezon.user.domain.models;
 
 public enum UserRoles {
-    AUX_BODEGA("AUX_BODEGA"),
-    ADMIN("ADMIN"),
-    CLIENT("CLIENT");
+    AUX_BODEGA("aux_bodega"),
+    ADMIN("admin"),
+    CLIENT("client");
 
-    private final String roleName;
+    private final String name;
 
-    UserRoles(String roleName) {
-        this.roleName = roleName;
+    UserRoles(String name) {
+        this.name = name;
     }
 
     @Override
     public String toString() {
-        return this.roleName;
+        return name;
     }
 
 }

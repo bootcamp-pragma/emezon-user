@@ -2,8 +2,10 @@ package com.emezon.user.infra.inbound.rest.controllers;
 
 import com.emezon.user.app.dtos.auth.AuthRequest;
 import com.emezon.user.app.dtos.auth.AuthResponse;
+import com.emezon.user.app.dtos.user.CreateClientDTO;
 import com.emezon.user.app.handlers.IAuthHandler;
 import com.emezon.user.infra.constants.RestApiConstants;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +23,12 @@ public class AuthController {
     @PostMapping("/signin")
     public ResponseEntity<AuthResponse> signin(@RequestBody AuthRequest authRequest) {
         AuthResponse authResponse = authHandler.signin(authRequest);
+        return ResponseEntity.ok(authResponse);
+    }
+
+    @PostMapping("/signup")
+    public ResponseEntity<AuthResponse> signup(@RequestBody @Valid CreateClientDTO createClientDTO) {
+        AuthResponse authResponse = authHandler.signup(createClientDTO);
         return ResponseEntity.ok(authResponse);
     }
 

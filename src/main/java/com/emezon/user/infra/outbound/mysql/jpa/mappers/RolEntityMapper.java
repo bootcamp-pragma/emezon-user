@@ -1,6 +1,7 @@
 package com.emezon.user.infra.outbound.mysql.jpa.mappers;
 
 import com.emezon.user.app.dtos.role.CreateRoleDto;
+import com.emezon.user.app.dtos.role.RoleDTO;
 import com.emezon.user.domain.models.Role;
 import com.emezon.user.infra.outbound.mysql.jpa.entities.RoleEntity;
 
@@ -15,6 +16,14 @@ public class RolEntityMapper {
                 .id(role.getId())
                 .name(role.getName())
                 .description(role.getDescription())
+                .build();
+    }
+
+    public static RoleEntity toEntity(RoleDTO roleDTO) {
+        return RoleEntity.builder()
+                .id(roleDTO.getId())
+                .name(roleDTO.getName())
+                .description(roleDTO.getDescription())
                 .build();
     }
 

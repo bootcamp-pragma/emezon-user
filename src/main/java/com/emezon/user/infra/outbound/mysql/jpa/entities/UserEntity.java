@@ -60,7 +60,7 @@ public class UserEntity implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(this.role.getName()));
+        return List.of(new SimpleGrantedAuthority(this.role.getAuthority()));
     }
 
     @Override
@@ -70,7 +70,6 @@ public class UserEntity implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        System.out.println("isAccountNonLocked");
         return true;
     }
     
