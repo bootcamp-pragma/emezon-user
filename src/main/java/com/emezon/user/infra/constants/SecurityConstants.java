@@ -6,6 +6,7 @@ public class SecurityConstants {
             "/api/docs/**",
             "/v3/api-docs/**",
             "/api/swagger-ui/**",
+            RestApiConstants.API_PING,
             RestApiConstants.API_AUTH + "/**",
     };
 
