@@ -11,7 +11,7 @@ import org.springframework.security.core.GrantedAuthority;
 import java.time.LocalDateTime;
 import java.util.Set;
 
-@Entity
+@Entity(name = RoleEntityConstants.ENTITY_NAME)
 @Table(name = RoleEntityConstants.TABLE_NAME)
 @Getter
 @Setter

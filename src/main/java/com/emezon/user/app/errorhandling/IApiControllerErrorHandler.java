@@ -8,4 +8,6 @@ public interface IApiControllerErrorHandler<T> {
 
     Object handleInvalidFormatException(Exception ex, T request);
 
+    Object handleIllegalArgumentException(Exception ex, T request);
+
 }

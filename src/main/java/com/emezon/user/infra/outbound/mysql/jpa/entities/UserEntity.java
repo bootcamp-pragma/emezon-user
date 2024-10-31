@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
-@Entity
+@Entity(name = UserEntityConstants.ENTITY_NAME)
 @Table(name = UserEntityConstants.TABLE_NAME)
 @Getter
 @Setter

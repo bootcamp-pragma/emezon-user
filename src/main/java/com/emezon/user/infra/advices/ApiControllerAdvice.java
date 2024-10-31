@@ -74,4 +74,15 @@ public class ApiControllerAdvice implements IApiControllerErrorHandler<WebReques
         return new ResponseEntity<>(response, status);
     }
 
+    @Override
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ExceptionResponse> handleIllegalArgumentException(Exception ex, WebRequest request) {
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        ExceptionResponse response = new ExceptionResponse(
+                ex.getMessage(),
+                request.getDescription(false),
+                status.value());
+        return new ResponseEntity<>(response, status);
+    }
+
 }
