@@ -1,6 +1,6 @@
 package com.emezon.user.infra.security;
 
-import com.emezon.user.domain.api.IJwtServicePort;
+import com.emezon.user.domain.spi.IJwtServicePort;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,7 +24,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter {
 
-    private final AntPathMatcher pathMatcher = new AntPathMatcher();
+    private static final AntPathMatcher pathMatcher = new AntPathMatcher();
     private final IJwtServicePort jwtService;
     private final UserDetailsService userDetailsService;
 

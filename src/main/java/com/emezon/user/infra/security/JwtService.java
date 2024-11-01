@@ -1,6 +1,6 @@
 package com.emezon.user.infra.security;
 
-import com.emezon.user.domain.api.IJwtServicePort;
+import com.emezon.user.domain.spi.IJwtServicePort;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

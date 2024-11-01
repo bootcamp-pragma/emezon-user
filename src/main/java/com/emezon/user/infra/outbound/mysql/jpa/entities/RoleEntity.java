@@ -1,6 +1,7 @@
 package com.emezon.user.infra.outbound.mysql.jpa.entities;
 
 import com.emezon.user.infra.outbound.mysql.jpa.constants.RoleEntityConstants;
+import com.emezon.user.infra.security.SecurityConstants;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -41,7 +42,7 @@ public class RoleEntity implements GrantedAuthority {
 
     @Override
     public String getAuthority() {
-        return RoleEntityConstants.ROLE_PREFIX + this.name;
+        return SecurityConstants.ROLE_PREFIX + this.name;
     }
 
 }

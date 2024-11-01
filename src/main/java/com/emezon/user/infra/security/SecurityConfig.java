@@ -2,13 +2,12 @@ package com.emezon.user.infra.security;
 
 import com.emezon.user.app.handlers.IAuthHandler;
 import com.emezon.user.app.handlers.IClientHandler;
-import com.emezon.user.domain.api.IJwtServicePort;
+import com.emezon.user.domain.spi.IJwtServicePort;
 import com.emezon.user.domain.api.IRetrieveUserInPort;
 import com.emezon.user.domain.constants.UserErrorMessages;
-import com.emezon.user.domain.models.User;
 import com.emezon.user.domain.models.UserRoles;
 import com.emezon.user.infra.inbound.rest.constants.RestApiConstants;
-import com.emezon.user.infra.outbound.mysql.jpa.mappers.UserEntityMapper;
+import com.emezon.user.infra.outbound.mysql.jpa.repositories.IMySQLJPAUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -34,6 +33,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
 
     private final IRetrieveUserInPort retrieveUserInPort;
+    private final IMySQLJPAUserRepository mySQLJPAUserRepository;
     private final AuthenticationConfiguration authenticationConfiguration;
     private final IClientHandler clientHandler;
     private final PasswordEncoder passwordEncoder;
@@ -45,11 +45,9 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return username -> {
-            User user = retrieveUserInPort.findByEmail(username).orElseThrow(
-                    () -> new UsernameNotFoundException(UserErrorMessages.USER_NOT_FOUND));
-            return UserEntityMapper.toEntity(user);
-        };
+        return username -> mySQLJPAUserRepository.findByEmail(username).orElseThrow(
+                () -> new UsernameNotFoundException(UserErrorMessages.USER_NOT_FOUND)
+        );
     }
 
     @Bean

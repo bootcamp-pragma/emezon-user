@@ -1,4 +1,4 @@
-package com.emezon.user.domain.api;
+package com.emezon.user.domain.spi;
 
 import java.util.Map;
 import java.util.function.Function;

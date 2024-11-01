@@ -6,7 +6,7 @@ import com.emezon.user.app.dtos.user.CreateClientDTO;
 import com.emezon.user.app.dtos.user.UserDTO;
 import com.emezon.user.app.handlers.IAuthHandler;
 import com.emezon.user.app.handlers.IClientHandler;
-import com.emezon.user.domain.api.IJwtServicePort;
+import com.emezon.user.domain.spi.IJwtServicePort;
 import com.emezon.user.domain.api.IRetrieveUserInPort;
 import com.emezon.user.domain.constants.UserErrorMessages;
 import com.emezon.user.domain.models.User;

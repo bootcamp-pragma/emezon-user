@@ -17,5 +17,7 @@ public class SecurityConstants {
 
     public static final String ROLE_NAME_CLAIM = "roleName";
 
+    public static final String ROLE_PREFIX = "ROLE_";
+
     private SecurityConstants() { }
 }
