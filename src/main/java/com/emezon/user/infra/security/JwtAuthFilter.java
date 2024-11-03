@@ -1,7 +1,6 @@
 package com.emezon.user.infra.security;
 
-import com.emezon.user.domain.api.IJwtServicePort;
-import com.emezon.user.infra.constants.SecurityConstants;
+import com.emezon.user.domain.spi.IJwtServicePort;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,10 +20,11 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+
 @RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter {
 
-    private final AntPathMatcher pathMatcher = new AntPathMatcher();
+    private static final AntPathMatcher pathMatcher = new AntPathMatcher();
     private final IJwtServicePort jwtService;
     private final UserDetailsService userDetailsService;
 
@@ -60,10 +60,10 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             Map<String, Object> data = new HashMap<>();
             data.put("username", userDetails.getUsername());
             if (jwtService.isTokenValid(jwt, data)) {
-                UsernamePasswordAuthenticationToken authenticationToken =
-                        new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                authenticationToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+                UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
+                        userDetails, null, userDetails.getAuthorities());
+                authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                SecurityContextHolder.getContext().setAuthentication(authToken);
             }
         }
 

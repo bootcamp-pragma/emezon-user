@@ -1,8 +1,9 @@
 package com.emezon.user.domain.api;
 
 import com.emezon.user.domain.models.User;
+import com.emezon.user.domain.utils.PaginatedResponse;
+import com.emezon.user.domain.utils.PaginatedResponseParams;
 
-import java.util.List;
 import java.util.Optional;
 
 public interface IRetrieveUserInPort {
@@ -11,6 +12,6 @@ public interface IRetrieveUserInPort {
 
     Optional<User> findByEmail(String email);
 
-    List<User> findAll();
+    PaginatedResponse<User> findAll(PaginatedResponseParams params);
 
 }

@@ -19,7 +19,7 @@ spring:
             hibernate:
                 dialect: ${DB_DIALECT:org.hibernate.dialect.H2Dialect}
                 format_sql: false
-        show-sql: true
+        show-sql: false
     security:
         jwt:
             secret: ${JWT_SECRET:secret-key-to-change}
@@ -31,7 +31,7 @@ springdoc:
         enabled: true
         path: /api/docs
     jwt:
-        key: Authorization JWT
-        scheme: Bearer
+        key: AuthorizationJWT
+        scheme: bearer
         format: JWT
         name: Authorization

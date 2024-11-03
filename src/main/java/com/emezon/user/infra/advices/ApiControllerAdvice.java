@@ -1,10 +1,11 @@
 package com.emezon.user.infra.advices;
 
-import com.emezon.user.app.errorhandling.IApiControllerErrorHandling;
+import com.emezon.user.app.errorhandling.IApiControllerErrorHandler;
 import com.emezon.user.domain.constants.UserErrorMessages;
 import com.emezon.user.domain.utils.ExceptionResponse;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import org.springframework.context.MessageSourceResolvable;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.ObjectError;
@@ -19,7 +20,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 @ControllerAdvice
-public class ApiControllerAdvice implements IApiControllerErrorHandling<WebRequest> {
+@Order(1)
+public class ApiControllerAdvice implements IApiControllerErrorHandler<WebRequest> {
 
     @Override
     @ExceptionHandler(MethodArgumentNotValidException.class)
@@ -67,6 +69,17 @@ public class ApiControllerAdvice implements IApiControllerErrorHandling<WebReque
 
         ExceptionResponse response = new ExceptionResponse(
                 message,
+                request.getDescription(false),
+                status.value());
+        return new ResponseEntity<>(response, status);
+    }
+
+    @Override
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<ExceptionResponse> handleIllegalArgumentException(Exception ex, WebRequest request) {
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        ExceptionResponse response = new ExceptionResponse(
+                ex.getMessage(),
                 request.getDescription(false),
                 status.value());
         return new ResponseEntity<>(response, status);

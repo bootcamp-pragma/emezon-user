@@ -1,5 +1,6 @@
 package com.emezon.user.infra.outbound.mysql.jpa.mappers;
 
+import com.emezon.user.app.dtos.user.UserDTO;
 import com.emezon.user.domain.models.User;
 import com.emezon.user.infra.outbound.mysql.jpa.entities.UserEntity;
 
@@ -19,6 +20,19 @@ public class UserEntityMapper {
                 .birthdate(user.getBirthdate())
                 .email(user.getEmail())
                 .password(user.getPassword())
+                .role(RolEntityMapper.toEntity(user.getRole()))
+                .build();
+    }
+
+    public static UserEntity toEntity(UserDTO user) {
+        return UserEntity.builder()
+                .id(user.getId())
+                .name(user.getName())
+                .lastName(user.getLastName())
+                .docNumber(user.getDocNumber())
+                .cellphone(user.getCellphone())
+                .birthdate(user.getBirthdate())
+                .email(user.getEmail())
                 .role(RolEntityMapper.toEntity(user.getRole()))
                 .build();
     }

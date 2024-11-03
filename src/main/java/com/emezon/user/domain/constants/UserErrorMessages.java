@@ -26,6 +26,7 @@ public class UserErrorMessages {
     public static final String USER_PASSWORD_TOO_SHORT = "User password must be at least " + UserConstraints.PASSWORD_MIN_LENGTH + " characters long";
 
     public static final String USER_NOT_FOUND_BY_EMAIL = "User with email '%s' not found";
+    public static final String USER_NOT_FOUND = "User not found";
 
     private UserErrorMessages() { }
 

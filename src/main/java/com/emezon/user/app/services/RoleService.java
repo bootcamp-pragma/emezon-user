@@ -5,7 +5,11 @@ import com.emezon.user.app.handlers.IRoleHandler;
 import com.emezon.user.app.mappers.RoleMapper;
 import com.emezon.user.domain.api.IRetrieveRoleInPort;
 import com.emezon.user.domain.models.Role;
+import com.emezon.user.domain.utils.PaginatedResponse;
+import com.emezon.user.domain.utils.PaginatedResponseParams;
+import com.emezon.user.infra.inbound.rest.utils.PaginatedResponseUtils;
 import lombok.AllArgsConstructor;
+import org.springframework.util.MultiValueMap;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,8 +32,16 @@ public class RoleService implements IRoleHandler {
     }
 
     @Override
-    public List<RoleDTO> getAllRoles() {
-        List<Role> roles = retrieveRolInPort.findAll();
-        return roles.stream().map(RoleMapper::toRolDTO).toList();
+    public PaginatedResponse<RoleDTO> getAllRoles(MultiValueMap<String, String> queryParams) {
+        PaginatedResponseParams params = PaginatedResponseUtils.getFromMultiValueMap(queryParams);
+        PaginatedResponse<Role> roles = retrieveRolInPort.findAll(params);
+        List<RoleDTO> roleDTOS = roles.getItems().stream().map(RoleMapper::toRolDTO).toList();
+        return new PaginatedResponse<>(
+                roleDTOS,
+                roles.getPage(),
+                roles.getSize(),
+                roles.getTotalItems(),
+                roles.getTotalPages()
+        );
     }
 }

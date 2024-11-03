@@ -1,4 +1,4 @@
-package com.emezon.user.infra.constants;
+package com.emezon.user.infra.inbound.rest.constants;
 
 public class RestApiConstants {
 
@@ -8,6 +8,8 @@ public class RestApiConstants {
     public static final String API_CLIENT = API_BASE + "/client";
     public static final String API_AUTH = API_BASE + "/auth";
     public static final String API_ROLE = API_BASE + "/role";
+    public static final String API_PING = API_BASE + "/ping";
+    public static final String API_USER = API_BASE + "/user";
 
     private RestApiConstants() { }
 

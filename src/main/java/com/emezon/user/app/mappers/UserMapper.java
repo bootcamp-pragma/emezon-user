@@ -2,6 +2,7 @@ package com.emezon.user.app.mappers;
 
 import com.emezon.user.app.dtos.user.CreateAdminDTO;
 import com.emezon.user.app.dtos.user.CreateAuxBodegaDTO;
+import com.emezon.user.app.dtos.user.CreateClientDTO;
 import com.emezon.user.app.dtos.user.UserDTO;
 import com.emezon.user.domain.models.User;
 
@@ -20,8 +21,8 @@ public class UserMapper {
         user.setCellphone(userDTO.getCellphone());
         user.setBirthdate(userDTO.getBirthdate());
         user.setEmail(userDTO.getEmail());
-        if (userDTO.getRol() != null){
-            user.setRole(RoleMapper.toModel(userDTO.getRol()));
+        if (userDTO.getRole() != null){
+            user.setRole(RoleMapper.toModel(userDTO.getRole()));
         }
         return user;
     }
@@ -40,6 +41,13 @@ public class UserMapper {
         return user;
     }
 
+    public static User toModel(CreateClientDTO createClientDTO) {
+        UserDTO userDTO = toUserDTO(createClientDTO);
+        User user = toModel(userDTO);
+        user.setPassword(createClientDTO.getPassword());
+        return user;
+    }
+
     public static UserDTO toUserDTO(User user) {
         UserDTO userDTO = new UserDTO();
         userDTO.setId(user.getId());
@@ -50,7 +58,7 @@ public class UserMapper {
         userDTO.setBirthdate(user.getBirthdate());
         userDTO.setEmail(user.getEmail());
         if (user.getRole() != null) {
-            userDTO.setRol(RoleMapper.toRolDTO(user.getRole()));
+            userDTO.setRole(RoleMapper.toRolDTO(user.getRole()));
         }
         return userDTO;
     }
@@ -74,6 +82,17 @@ public class UserMapper {
         userDTO.setCellphone(createAuxBodegaDTO.getCellphone());
         userDTO.setBirthdate(createAuxBodegaDTO.getBirthdate());
         userDTO.setEmail(createAuxBodegaDTO.getEmail());
+        return userDTO;
+    }
+
+    public static UserDTO toUserDTO(CreateClientDTO createClientDTO) {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setName(createClientDTO.getName());
+        userDTO.setLastName(createClientDTO.getLastName());
+        userDTO.setDocNumber(createClientDTO.getDocNumber());
+        userDTO.setCellphone(createClientDTO.getCellphone());
+        userDTO.setBirthdate(createClientDTO.getBirthdate());
+        userDTO.setEmail(createClientDTO.getEmail());
         return userDTO;
     }
 
