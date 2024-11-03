@@ -1,10 +1,12 @@
 package com.emezon.user.domain.usecases;
 
 import com.emezon.user.domain.api.IRetrieveRoleInPort;
+import com.emezon.user.domain.constants.PaginatedResponseConstraints;
 import com.emezon.user.domain.models.Role;
 import com.emezon.user.domain.spi.IRoleRepositoryOutPort;
+import com.emezon.user.domain.utils.PaginatedResponse;
+import com.emezon.user.domain.utils.PaginatedResponseParams;
 
-import java.util.List;
 import java.util.Optional;
 
 public class RetrieveRoleUseCase implements IRetrieveRoleInPort {
@@ -26,7 +28,9 @@ public class RetrieveRoleUseCase implements IRetrieveRoleInPort {
     }
 
     @Override
-    public List<Role> findAll() {
-        return rolRepositoryOutPort.findAll();
+    public PaginatedResponse<Role> findAll(PaginatedResponseParams params) {
+        PaginatedResponseConstraints.validateParameters(params);
+        return rolRepositoryOutPort.findAll(params);
     }
+
 }

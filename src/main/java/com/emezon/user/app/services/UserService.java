@@ -6,7 +6,11 @@ import com.emezon.user.app.mappers.UserMapper;
 import com.emezon.user.domain.api.IPersistUserInPort;
 import com.emezon.user.domain.api.IRetrieveUserInPort;
 import com.emezon.user.domain.models.User;
+import com.emezon.user.domain.utils.PaginatedResponse;
+import com.emezon.user.domain.utils.PaginatedResponseParams;
+import com.emezon.user.infra.inbound.rest.utils.PaginatedResponseUtils;
 import lombok.AllArgsConstructor;
+import org.springframework.util.MultiValueMap;
 
 import java.util.List;
 import java.util.Optional;
@@ -36,8 +40,16 @@ public class UserService implements IUserHandler {
     }
 
     @Override
-    public List<UserDTO> getAllUsers() {
-        List<User> users = retrieveUserInPort.findAll();
-        return users.stream().map(UserMapper::toUserDTO).toList();
+    public PaginatedResponse<UserDTO> getAllUsers(MultiValueMap<String, String> queryParams) {
+        PaginatedResponseParams params = PaginatedResponseUtils.getFromMultiValueMap(queryParams);
+        PaginatedResponse<User> users = retrieveUserInPort.findAll(params);
+        List<UserDTO> userDTOS = users.getItems().stream().map(UserMapper::toUserDTO).toList();
+        return new PaginatedResponse<>(
+                userDTOS,
+                users.getPage(),
+                users.getSize(),
+                users.getTotalItems(),
+                users.getTotalPages()
+        );
     }
 }
