@@ -2,9 +2,11 @@ package com.emezon.user.infra.inbound.rest.controllers;
 
 import com.emezon.user.app.dtos.user.CreateAdminDTO;
 import com.emezon.user.app.dtos.user.CreateAuxBodegaDTO;
+import com.emezon.user.app.dtos.user.CreateClientDTO;
 import com.emezon.user.app.dtos.user.UserDTO;
 import com.emezon.user.app.handlers.IAdminHandler;
 import com.emezon.user.app.handlers.IAuxBodegaHandler;
+import com.emezon.user.app.handlers.IClientHandler;
 import com.emezon.user.infra.inbound.rest.constants.RestApiConstants;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,7 @@ public class AdminController {
 
     private final IAdminHandler adminHandler;
     private final IAuxBodegaHandler auxBodegaHandler;
+    private final IClientHandler clientHandler;
 
     @PostMapping()
     public ResponseEntity<UserDTO> addNewAdmin(
@@ -37,6 +40,14 @@ public class AdminController {
             @RequestBody @Valid CreateAuxBodegaDTO createAuxBodegaDTO) {
         URI location = URI.create(RestApiConstants.API_ADMIN + "/aux-bodega");
         UserDTO createdUser = auxBodegaHandler.createAuxBodega(createAuxBodegaDTO);
+        return ResponseEntity.created(location).body(createdUser);
+    }
+
+    @PostMapping("/client")
+    public ResponseEntity<UserDTO> addNewClient(
+            @RequestBody @Valid CreateClientDTO createClientDTO) {
+        URI location = URI.create(RestApiConstants.API_ADMIN + "/client");
+        UserDTO createdUser = clientHandler.createClient(createClientDTO);
         return ResponseEntity.created(location).body(createdUser);
     }
 
