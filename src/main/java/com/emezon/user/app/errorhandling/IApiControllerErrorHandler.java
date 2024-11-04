@@ -10,4 +10,6 @@ public interface IApiControllerErrorHandler<T> {
 
     Object handleIllegalArgumentException(Exception ex, T request);
 
+    Object handleAuthorizationDeniedException(Exception ex, T request);
+
 }
