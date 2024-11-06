@@ -2,7 +2,6 @@ package com.emezon.user.infra.inbound.rest.utils;
 
 import com.emezon.user.domain.constants.PaginatedResponseConstraints;
 import com.emezon.user.domain.constants.PaginatedResponseErrorMessages;
-import com.emezon.user.domain.utils.ValidPageableRequest;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import org.springframework.util.MultiValueMap;

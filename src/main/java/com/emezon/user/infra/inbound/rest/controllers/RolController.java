@@ -3,7 +3,7 @@ package com.emezon.user.infra.inbound.rest.controllers;
 import com.emezon.user.app.dtos.role.RoleDTO;
 import com.emezon.user.app.handlers.IRoleHandler;
 import com.emezon.user.domain.utils.PaginatedResponse;
-import com.emezon.user.domain.utils.ValidPageableRequest;
+import com.emezon.user.infra.inbound.rest.utils.ValidPageableRequest;
 import com.emezon.user.infra.inbound.rest.constants.PaginatedConstants;
 import com.emezon.user.infra.inbound.rest.constants.RestApiConstants;
 import com.emezon.user.infra.outbound.mysql.jpa.entities.RoleEntity;
@@ -16,8 +16,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(RestApiConstants.API_ROLE)
