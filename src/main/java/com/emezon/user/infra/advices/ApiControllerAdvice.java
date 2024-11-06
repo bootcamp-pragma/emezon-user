@@ -4,6 +4,7 @@ import com.emezon.user.app.errorhandling.IApiControllerErrorHandler;
 import com.emezon.user.domain.constants.UserErrorMessages;
 import com.emezon.user.domain.utils.ExceptionResponse;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
+import io.jsonwebtoken.MalformedJwtException;
 import org.springframework.context.MessageSourceResolvable;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
@@ -104,6 +105,17 @@ public class ApiControllerAdvice implements IApiControllerErrorHandler<WebReques
         HttpStatus status = HttpStatus.BAD_REQUEST;
         ExceptionResponse response = new ExceptionResponse(
                 "Invalid date format",
+                request.getDescription(false),
+                status.value());
+        return new ResponseEntity<>(response, status);
+    }
+
+    @Override
+    @ExceptionHandler(MalformedJwtException.class)
+    public Object handleMalformedJwtException(Exception ex, WebRequest request) {
+        HttpStatus status = HttpStatus.FORBIDDEN;
+        ExceptionResponse response = new ExceptionResponse(
+                ex.getMessage(),
                 request.getDescription(false),
                 status.value());
         return new ResponseEntity<>(response, status);
