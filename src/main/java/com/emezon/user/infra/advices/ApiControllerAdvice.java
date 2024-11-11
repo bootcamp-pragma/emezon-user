@@ -4,6 +4,7 @@ import com.emezon.user.app.errorhandling.IApiControllerErrorHandler;
 import com.emezon.user.domain.constants.UserErrorMessages;
 import com.emezon.user.domain.utils.ExceptionResponse;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
+import io.jsonwebtoken.MalformedJwtException;
 import org.springframework.context.MessageSourceResolvable;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.annotation.HandlerMethodValidationException;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 @ControllerAdvice
@@ -89,6 +91,28 @@ public class ApiControllerAdvice implements IApiControllerErrorHandler<WebReques
     @Override
     @ExceptionHandler(AuthorizationDeniedException.class)
     public ResponseEntity<ExceptionResponse> handleAuthorizationDeniedException(Exception ex, WebRequest request) {
+        HttpStatus status = HttpStatus.FORBIDDEN;
+        ExceptionResponse response = new ExceptionResponse(
+                ex.getMessage(),
+                request.getDescription(false),
+                status.value());
+        return new ResponseEntity<>(response, status);
+    }
+
+    @Override
+    @ExceptionHandler(DateTimeParseException.class)
+    public Object handleDateTimeParseException(Exception ex, WebRequest request) {
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        ExceptionResponse response = new ExceptionResponse(
+                "Invalid date format",
+                request.getDescription(false),
+                status.value());
+        return new ResponseEntity<>(response, status);
+    }
+
+    @Override
+    @ExceptionHandler(MalformedJwtException.class)
+    public Object handleMalformedJwtException(Exception ex, WebRequest request) {
         HttpStatus status = HttpStatus.FORBIDDEN;
         ExceptionResponse response = new ExceptionResponse(
                 ex.getMessage(),
